@@ -30,6 +30,10 @@ export default defineComponent({
             padding: 2.5rem;
             height: auto;
         }
+
+      .logo {
+        padding: 5rem;
+      }
     }
 </style>
  
