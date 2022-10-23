@@ -1,26 +1,57 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main class="columns is-gapless is-multiline">
+    <div class="column is-one-quarter">
+      <BarraLateral></BarraLateral>
+    </div>
+
+    <div class="column is-three-quarter">
+      <FormularioTarefa @salvarTarefa="salvar" />
+      <div>
+        <ListaTarefas v-for="(tarefa, index) in tarefas" :key="index"
+          :tarefa="tarefa"
+        />
+      </div>
+      <BoxTarefa v-if="listaEstaVazia">
+        Nenhuma tarefa cadastrada! :(
+      </BoxTarefa>
+    </div>
+  </main>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="js">
+import BarraLateral from "./components/BarraLateral.vue";
+import FormularioTarefa from "./components/FormularioTarefa.vue";
+import ListaTarefas from "@/components/ListaTarefas";
+import BoxTarefa from "@/components/BoxTarefa";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    BoxTarefa,
+    BarraLateral,
+    FormularioTarefa,
+    ListaTarefas,
+  },
+  data () {
+    return {
+      tarefas: []
+    }
+  },
+  computed: {
+    listaEstaVazia() {
+      return this.tarefas.length === 0
+    }
+  },
+  methods: {
+    salvar(tarefa) {
+      this.tarefas.push(tarefa)
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .lista {
+    padding: 1.25rem;
+  }
 </style>
