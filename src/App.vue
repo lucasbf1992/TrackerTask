@@ -1,10 +1,12 @@
 <template>
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline" :class="{ 'modo-escuro': modoEscuro }">
     <div class="column is-one-quarter">
-      <BarraLateral/>
+      <BarraLateral
+        @temaAlterado="trocarTema"
+      />
     </div>
 
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter conteudo">
       <FormularioTarefa @salvarTarefa="salvar" />
       <div>
         <ListaTarefas v-for="(tarefa, index) in tarefas" :key="index"
@@ -34,7 +36,8 @@ export default {
   },
   data () {
     return {
-      tarefas: []
+      tarefas: [],
+      modoEscuro: false,
     }
   },
   computed: {
@@ -45,6 +48,9 @@ export default {
   methods: {
     salvar(tarefa) {
       this.tarefas.push(tarefa)
+    },
+    trocarTema(modoEscuro) {
+      this.modoEscuro = modoEscuro
     }
   }
 }
@@ -53,5 +59,19 @@ export default {
 <style>
   .lista {
     padding: 1.25rem;
+  }
+
+  main {
+    --bg-primario: #fff;
+    --texto-primario: #000
+  }
+
+  main.modo-escuro {
+    --bg-primario: #2b2d42;
+    --texto-primario: #ddd
+  }
+
+  .conteudo {
+    background-color: var(--bg-primario);
   }
 </style>
