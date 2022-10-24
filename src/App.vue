@@ -11,6 +11,8 @@
       <div>
         <ListaTarefas v-for="(tarefa, index) in tarefas" :key="index"
           :tarefa="tarefa"
+          :chave="index"
+          @exclusaoTarefa="excluir"
         />
       </div>
       <BoxTarefa v-if="listaEstaVazia">
@@ -48,6 +50,9 @@ export default {
   methods: {
     salvar(tarefa) {
       this.tarefas.push(tarefa)
+    },
+    excluir(chave) {
+      this.tarefas.splice(chave, 1)
     },
     trocarTema(modoEscuro) {
       this.modoEscuro = modoEscuro
