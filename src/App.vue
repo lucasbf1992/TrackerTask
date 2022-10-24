@@ -6,9 +6,9 @@
       />
     </div>
 
-    <div class="column is-three-quarter conteudo">
+    <div class="column is-three-quarter conteudo m-1">
       <FormularioTarefa @salvarTarefa="salvar" />
-      <div>
+      <div class="">
         <ListaTarefas v-for="(tarefa, index) in tarefas" :key="index"
           :tarefa="tarefa"
           :chave="index"
@@ -82,21 +82,13 @@ export default {
 </script>
 
 <style>
-  .lista {
-    padding: 1.25rem;
-  }
-
   main {
-    --bg-primario: #fff;
+    --bg-primario: var(--bg-primario);
     --texto-primario: #000
   }
 
   main.modo-escuro {
     --bg-primario: #2b2d42;
     --texto-primario: #ddd
-  }
-
-  .conteudo {
-    background-color: var(--bg-primario);
   }
 </style>
