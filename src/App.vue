@@ -52,6 +52,26 @@ export default {
     trocarTema(modoEscuro) {
       this.modoEscuro = modoEscuro
     }
+  },
+  watch: {
+    tarefas: {
+      deep: true,
+      handler() {
+        localStorage.setItem('tarefas', JSON.stringify(this.tarefas))
+      }
+    }
+  },
+  created() {
+    const json = localStorage.getItem('tarefas')
+    const tarefas = JSON.parse(json)
+
+    if (Array.isArray(tarefas)) {
+      this.tarefas = tarefas
+
+      return
+    }
+
+    this.tarefas = []
   }
 }
 </script>
