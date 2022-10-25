@@ -4,11 +4,11 @@
       <div class="column is-4">
         {{tarefa.descricaoTarefa || 'Tarefa sem descrição' }}
       </div>
-      <div class="column">
+      <div class="column is-flex is-justify-content-center">
         <CronometroTarefa :tempo-em-segundos=tarefa.tempoTarefa>
         </CronometroTarefa>
       </div>
-      <div class="column">
+      <div class="column is-flex is-justify-content-flex-end">
         <button class="button is-rounded is-danger" @click="excluirTarefa(chave)">
           <span class="icon">
             <i class="fas fa-trash"></i>
